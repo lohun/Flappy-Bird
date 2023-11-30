@@ -13,6 +13,7 @@ local physics = require "physics"
 
 
 local pillars = {}
+local sceneGroup
 local top
 local bottom
 local bird
@@ -117,7 +118,7 @@ function scene:create(event)
 	-- INSERT code here to initialize the scene
 	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
 
-	local sceneGroup = self.view
+	sceneGroup = self.view
 
 	-- We need physics started to add bodies, but we don't want the simulaton
 	-- running until the scene is on the screen.
@@ -191,8 +192,8 @@ function scene:hide(event)
 		timer.cancel(gameLoopTimer)
 		Runtime:removeEventListener("collision", onCollision)
 		background:removeEventListener('tap', steadyBird)
+		composer.removeScene("level1", true);
 		physics.stop()
-		composer.removeScene("level1")
 		-- Called when the scene is now off screen
 	end
 end
