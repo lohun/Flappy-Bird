@@ -85,7 +85,7 @@ local sequenceData =
 }
 
 local function steadyBird()
-	bird:applyLinearImpulse(0, -0.1, bird.x, bird.y)
+	bird:applyLinearImpulse(0, -0.2, bird.x, bird.y)
 end
 
 local function endGame()
@@ -190,8 +190,8 @@ function scene:hide(event)
 	elseif phase == "did" then
 		timer.cancel(gameLoopTimer)
 		Runtime:removeEventListener("collision", onCollision)
-		Runtime:removeEventListener('tap', steadyBird)
-		physics.pause()
+		background:removeEventListener('tap', steadyBird)
+		physics.stop()
 		composer.removeScene("level1")
 		-- Called when the scene is now off screen
 	end
